@@ -1,5 +1,5 @@
 {
-    "name": "topthink/think",
+    "name": "gjianbo/think",
     "description": "the new thinkphp framework",
     "type": "project",
     "keywords": [
@@ -17,8 +17,7 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "topthink/framework": "6.0.*-dev",
-        "topthink/think-view": "^1.0",
+        "gjianbo/framework": "6.0.*-dev",
         "symfony/var-dumper":"^4.2"
     },
     "autoload": {
