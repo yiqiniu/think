@@ -55,7 +55,7 @@ return [
             // Builder类
             'builder'         => '',
             // Query类
-            'query'           => '',
+            'query' => '\\yiqiniu\\db\\Query',
             // 是否需要断线重连
             'break_reconnect' => false,
         ],

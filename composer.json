@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "yiqiniu/framework": "6.0.*-dev",
+        "topthink/framework": "6.0.*-dev",
         "symfony/var-dumper":"^4.2"
     },
     "autoload": {
