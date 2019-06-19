@@ -16,6 +16,7 @@ use think\Model;
 class Query extends \think\db\Query
 {
 
+
     /**
      * 查找记录 返回数组类型
      * @access public
@@ -27,19 +28,12 @@ class Query extends \think\db\Query
      */
     public function selectArray($data = null): array
     {
-        if ( ! is_null($data)) {
+        if (!is_null($data)) {
             // 主键条件分析
             $this->parsePkWhere($data);
         }
 
-        $resultSet = $this->connection->select($this);
-
-        // 返回结果处理
-        if ( ! empty($this->options['fail']) && count($resultSet) == 0) {
-            return [];
-        }
-
-        return empty($resultSet) ? [] : $resultSet;
+        return $this->connection->select($this);
     }
 
     /**
@@ -53,19 +47,13 @@ class Query extends \think\db\Query
      */
     public function findArray($data = null)
     {
-        if ( ! is_null($data)) {
+        if (!is_null($data)) {
             // AR模式分析主键条件
             $this->parsePkWhere($data);
         }
 
-        $result = $this->connection->find($this);
+        return $this->connection->find($this);
 
-        // 数据处理
-        if (empty($result)) {
-            return [];
-        }
-
-        return $result;
     }
 }
 
