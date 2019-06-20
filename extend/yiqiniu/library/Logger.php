@@ -9,22 +9,38 @@
 namespace yiqiniu\library;
 
 
-use yiqiniu\traits\Singleton;
-
 class Logger
 {
-
-
-    use Singleton;
 
     private $runtime_path = '';
 
     /**
+     * 架构函数
+     * @param array $config 连接配置
+     * @access public
+     */
+    public function __construct(array $config = [])
+    {
+        if (defined("RUNTIME_PATH")) {
+            $this->runtime_path = RUNTIME_PATH;
+        } elseif (function_exists("app")) {
+            $this->runtime_path = app()->getRuntimePath();
+        } else {
+            $this->runtime_path = dirname(__FILE__) . '/runtime';
+            if (!file_exists($this->runtime_path)) {
+                mkdir($this->runtime_path, 0777, true);
+            }
+        }
+
+    }
+
+
+    /**
      * 记录异常的bug
-     * @param Exception $e
+     * @param mixed $e
      * @return \think\Response|\think\response\Json
      */
-    public function exception($e)
+    public function exception($e): bool
     {
         if (!$e instanceof \Exception) {
             return false;
@@ -49,6 +65,7 @@ class Logger
 
 
         $this->writeLogger($exception_log, $logdata, true);
+        return true;
 
     }
 
@@ -96,17 +113,4 @@ class Logger
 
     }
 
-    protected function _init()
-    {
-        if (defined("RUNTIME_PATH")) {
-            $this->runtime_path = RUNTIME_PATH;
-        } elseif (function_exists("app")) {
-            $this->runtime_path = app()->getRuntimePath();
-        } else {
-            $this->runtime_path = dirname(__FILE__) . '/runtime';
-            if (!file_exists($this->runtime_path)) {
-                mkdir($this->runtime_path, 0777, true);
-            }
-        }
-    }
 }

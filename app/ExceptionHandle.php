@@ -19,7 +19,7 @@ use think\exception\HttpResponseException;
 use think\exception\ValidateException;
 use think\Response;
 use Throwable;
-use yiqiniu\library\Logger;
+use yiqiniu\facade\Logger;
 
 /**
  * 应用异常处理类
@@ -48,7 +48,7 @@ class ExceptionHandle extends Handle
     public function report(Throwable $exception): void
     {
         // 使用内置的方式记录异常日志
-        Logger::getInstance()->exception($exception);
+        Logger::exception($exception);
         parent::report($exception);
     }
 
