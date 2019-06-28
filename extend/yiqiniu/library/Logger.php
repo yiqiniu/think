@@ -52,7 +52,7 @@ class Logger
         } else {
             $logdata['code'] = $e->getCode();
         }
-        $logdata['request_uri'] = $_SERVER['REQUEST_URI'];
+        $logdata['request_uri'] = $_SERVER['REQUEST_URI'] ?? '';
         $logdata['post'] = $_POST;
         $logdata['get'] = $_GET;
         $logdata['message'] = $e->getMessage();
