@@ -15,11 +15,11 @@
 
 return [
     // 驱动方式
-    'type'   => 'File',
+    'type'   => Env::get('cache.type','File'),
     // 缓存保存目录
-    'path'   => '',
+    'path'   => Env::get('cache.path',''),
     // 缓存前缀
-    'prefix' => '',
+    'prefix' => Env::get('cache.prefix',''),
     // 缓存有效期 0表示永久缓存
-    'expire' => 0,
+    'expire' => Env::get('cache.expire',0),
 ];
