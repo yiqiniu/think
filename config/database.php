@@ -9,9 +9,15 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
+$type = Env::get('database.type', 'mysql');
+$builder='';
+if (stripos($type,'pgsql')!==false){
+    $type='yiqiniu\\db\\connector\\Pgsql';
+    $builder='\\think\\db\\builder\\Pgsql';
+}
 return [
     // 数据库类型
-    'type'              => Env::get('database.type', 'mysql'),
+    'type'              => $type,
     // 服务器地址
     'hostname'          => Env::get('database.hostname', '127.0.0.1'),
     // 数据库名
@@ -53,7 +59,7 @@ return [
     // 是否需要进行SQL性能分析
     'sql_explain'     => false,
     // Builder类
-    'builder'         => '',
+    'builder'         => $builder,
     // Query类
     'query'           => '\\yiqiniu\\db\\Query',
     // 是否需要断线重连
