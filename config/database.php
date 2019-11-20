@@ -49,11 +49,7 @@ return [
             'fields_strict'     => true,
             // 是否需要进行SQL性能分析
             'sql_explain'     => false,
-            // Builder类
-            'builder'         => '',
-            // Query类
-            'query' => '\\yiqiniu\\db\\Query',
-            // 是否需要断线重连
+              // 是否需要断线重连
             'break_reconnect'   => false,
             // 监听SQL
             'trigger_sql'       => env('app_debug', true),
@@ -61,6 +57,10 @@ return [
             'fields_cache'      => false,
             // 字段缓存路径
             'schema_cache_path' => app()->getRuntimePath() . 'schema' . DIRECTORY_SEPARATOR,
+            // Builder类
+            'builder'         => '',
+            // Query类
+            'query' => '\\yiqiniu\\db\\Query',
         ],
 
         // 更多的数据库配置信息
