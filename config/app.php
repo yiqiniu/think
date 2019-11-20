@@ -15,13 +15,13 @@
 
 return [
     // 应用名称
-    'app_name'               => Env::get('app.name',''),
+    'app_name'               => Env::get('app_name',''),
     // 应用地址
-    'app_host'               => Env::get('app.host', ''),
+    'app_host'               => Env::get('app_host', ''),
     // 应用调试模式
-    'app_debug'              => Env::get('app.debug',false),
+    'app_debug'              => Env::get('app_debug',false),
     // 应用Trace
-    'app_trace'              => Env::get('app.trace',false),
+    'app_trace'              => Env::get('app_trace',false),
     // 是否支持多模块
     'app_multi_module'       => true,
     // 入口自动绑定模块
