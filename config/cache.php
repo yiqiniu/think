@@ -24,6 +24,22 @@ return [
             // 序列化机制 例如 ['serialize', 'unserialize']
             'serialize'  => [],
         ],
+        'redis' => [
+            // 驱动方式
+            'type'       => 'Redis',
+            // 缓存保存目录
+            'host' =>env('REDIS.HOST','127.0.0.1'),
+            // 端口号
+            'port' =>env('REDIS.PORT',6379),
+            // 缓存前缀
+            'prefix'     => env('REDIS.PREFIX',''),
+            // 缓存有效期 0表示永久缓存
+            'expire'     => env('REDIS.expire',0),
+            'password'   => env('REDIS.AUTH',''),
+            'select'     => 0,
+            'timeout'    => env('REDIS.TIMEOUT',0),
+            'persistent' => env('REDIS.PERSISTENT',0),
+        ],
         // 更多的缓存连接
     ],
 ];
