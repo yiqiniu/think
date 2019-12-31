@@ -38,7 +38,10 @@ class ExceptionHandle extends Handle
     public function report(Throwable $exception): void
     {
         // 使用内置的方式记录异常日志
-        Logger::exception($exception);
+
+        if(!($exception instanceof  HttpResponseException)){
+            Logger::exception($exception);
+        }
         parent::report($exception);
     }
 
