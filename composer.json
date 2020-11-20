@@ -18,13 +18,14 @@
     "require": {
         "php": ">=7.1.0",
         "topthink/framework": "^6.0.0",
-        "topthink/think-orm": "^2.0",
-        "yiqiniu/think-extend": "6.0.*.dev",
-        "topthink/think-multi-app": "1.*"
+        "topthink/think-multi-app": "1.*",
+      "ext-curl": "*"
     },
     "require-dev": {
         "topthink/think-trace":"^1.0",
-        "yiqiniu/think-console": "6.0.*.dev"
+        "yiqiniu/think-orm": "2.0.*.dev",
+        "yiqiniu/think-extend": "6.1.x-dev"
+
     },
     "autoload": {
         "psr-4": {
@@ -42,5 +43,21 @@
             "@php think service:discover",
             "@php think vendor:publish"
         ]
+    },
+    "repositories": {
+        "yiqiniu/think-extend": {
+            "type": "path",
+            "url": "../think-extend",
+            "options": {
+                "symlink": true
+            }
+        }, "yiqiniu/think-orm": {
+            "type": "path",
+            "url": "../think-orm",
+            "options": {
+                "symlink": true
+            }
+        }
     }
+
 }

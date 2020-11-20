@@ -59,8 +59,8 @@ return [
             'schema_cache_path' => app()->getRuntimePath() . 'schema' . DIRECTORY_SEPARATOR,
             // Builder类
             'builder'         => '',
-            // Query类
-            'query' => '\\yiqiniu\\db\\Query',
+            // 数据集返回类型
+            'resultset_type' => 'array',
         ],
 
         // 更多的数据库配置信息
