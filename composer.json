@@ -43,21 +43,6 @@
             "@php think service:discover",
             "@php think vendor:publish"
         ]
-    },
-    "repositories": {
-        "yiqiniu/think-extend": {
-            "type": "path",
-            "url": "../think-extend",
-            "options": {
-                "symlink": true
-            }
-        }, "yiqiniu/think-orm": {
-            "type": "path",
-            "url": "../think-orm",
-            "options": {
-                "symlink": true
-            }
-        }
     }
 
 }
