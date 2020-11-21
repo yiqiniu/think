@@ -17,15 +17,14 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "topthink/framework": "^6.0.0",
-        "topthink/think-multi-app": "1.*",
+
       "ext-curl": "*"
     },
     "require-dev": {
-        "topthink/think-trace":"^1.0",
+        "yiqiniu/framework": "^6.0.x-dev",
+        "yiqiniu/think-multi-app": "dev-master",
         "yiqiniu/think-orm": "2.0.*.dev",
         "yiqiniu/think-extend": "6.1.x-dev"
-
     },
     "autoload": {
         "psr-4": {
