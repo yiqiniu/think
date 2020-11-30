@@ -18,13 +18,15 @@
     "require": {
         "php": ">=7.1.0",
 
-      "ext-curl": "*"
+      "ext-curl": "*",
+        "monolog/monolog": "^2.1"
     },
     "require-dev": {
         "yiqiniu/framework": "^6.0.x-dev",
         "yiqiniu/think-multi-app": "dev-master",
         "yiqiniu/think-orm": "2.0.*.dev",
-        "yiqiniu/think-extend": "6.1.x-dev"
+        "yiqiniu/think-extend": "6.1.x-dev",
+        "yiqiniu/logger-viewer": "dev-master"
     },
     "autoload": {
         "psr-4": {
