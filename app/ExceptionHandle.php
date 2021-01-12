@@ -10,7 +10,7 @@ use think\exception\HttpResponseException;
 use think\exception\ValidateException;
 use think\Response;
 use Throwable;
-use yiqiniu\facade\Logger;
+use yiqiniu\extend\facade\Logger;
 
 /**
  * 应用异常处理类
