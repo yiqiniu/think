@@ -1,9 +1,10 @@
 <?php
+
 namespace app;
 
 use think\db\exception\DataNotFoundException;
-use think\db\exception\DbException;
 use think\db\exception\ModelNotFoundException;
+use think\exception\ErrorException;
 use think\exception\Handle;
 use think\exception\HttpException;
 use think\exception\HttpResponseException;
@@ -33,27 +34,24 @@ class ExceptionHandle extends Handle
      * 记录异常信息（包括日志或者其它方式记录）
      *
      * @access public
-     * @param  Throwable $exception
+     * @param Throwable $exception
      * @return void
      */
     public function report(Throwable $exception): void
     {
 
         // 处理数据库的异常
-        if ($exception instanceof DbException) {
-            Logger::exception($exception);
-            api_result(API_ERROR, $exception->getMessage());
-
-        } elseif (!($exception instanceof HttpResponseException)) {
+        if (!($exception instanceof HttpResponseException)) {
             //不记录404的异常信息
-            if (method_exists($exception, 'getStatusCode') && $exception->getStatusCode() == 404) {
-                $msg = $exception->getMessage();
-                //$msg = substr($msg, 0, strpos($msg, ":") + 1) . substr($msg, strrpos($msg, '\\') + 1);
-                api_result(API_ERROR, $msg);
-            } else {
+            if (!method_exists($exception, 'getStatusCode') || $exception->getStatusCode() !== 404) {
                 Logger::exception($exception);
             }
-
+            //
+            if ($exception instanceof ErrorException) {
+                echo json_encode(['code' => API_ERROR, 'msg' => $exception->getMessage()], JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE);
+                exit;
+            }
+            api_result(API_ERROR, $exception->getMessage());
         }
         // 使用内置的方式记录异常日志
         parent::report($exception);
@@ -63,7 +61,7 @@ class ExceptionHandle extends Handle
      * Render an exception into an HTTP response.
      *
      * @access public
-     * @param \think\Request   $request
+     * @param \think\Request $request
      * @param Throwable $e
      * @return Response
      */
