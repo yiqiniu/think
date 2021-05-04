@@ -12,6 +12,8 @@ use think\exception\ValidateException;
 use think\Response;
 use Throwable;
 use yiqiniu\extend\facade\Logger;
+use yiqiniu\extend\exception\ApiException;
+
 
 /**
  * 应用异常处理类
@@ -41,10 +43,14 @@ class ExceptionHandle extends Handle
     {
 
         // 处理数据库的异常
+        // 处理数据库的异常
         if (!($exception instanceof HttpResponseException)) {
-            //不记录404的异常信息
-            if (!method_exists($exception, 'getStatusCode') || $exception->getStatusCode() !== 404) {
-                Logger::exception($exception);
+
+            if(!($exception) instanceof ApiException){
+                //不记录404的异常信息
+                if (!method_exists($exception, 'getStatusCode') || $exception->getStatusCode() !== 404) {
+                    Logger::exception($exception);
+                }
             }
             //
             if ($exception instanceof ErrorException) {
