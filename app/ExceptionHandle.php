@@ -11,8 +11,8 @@ use think\exception\HttpResponseException;
 use think\exception\ValidateException;
 use think\Response;
 use Throwable;
-use yiqiniu\extend\facade\Logger;
 use yiqiniu\extend\exception\ApiException;
+use yiqiniu\extend\facade\Logger;
 
 
 /**
@@ -46,7 +46,7 @@ class ExceptionHandle extends Handle
         // 处理数据库的异常
         if (!($exception instanceof HttpResponseException)) {
 
-            if(!($exception) instanceof ApiException){
+            if (!($exception) instanceof ApiException) {
                 //不记录404的异常信息
                 if (!method_exists($exception, 'getStatusCode') || $exception->getStatusCode() !== 404) {
                     Logger::exception($exception);
@@ -57,7 +57,10 @@ class ExceptionHandle extends Handle
                 echo json_encode(['code' => API_ERROR, 'msg' => $exception->getMessage()], JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE);
                 exit;
             }
-            api_result(API_ERROR, $exception->getMessage());
+            if (class_exists(HttpResponseException::class)) {
+                api_result(API_ERROR, $exception->getMessage());
+            }
+
         }
         // 使用内置的方式记录异常日志
         parent::report($exception);
@@ -68,7 +71,7 @@ class ExceptionHandle extends Handle
      *
      * @access public
      * @param \think\Request $request
-     * @param Throwable $e
+     * @param Throwable      $e
      * @return Response
      */
     public function render($request, Throwable $e): Response
