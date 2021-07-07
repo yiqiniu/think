@@ -42,8 +42,6 @@ class ExceptionHandle extends Handle
     public function report(Throwable $exception): void
     {
 
-        // 处理数据库的异常
-        // 处理数据库的异常
         if (!($exception instanceof HttpResponseException)) {
 
             if (!($exception) instanceof ApiException) {
@@ -57,7 +55,11 @@ class ExceptionHandle extends Handle
                 echo json_encode(['code' => API_ERROR, 'msg' => $exception->getMessage()], JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE);
                 exit;
             }
-            if (class_exists(HttpResponseException::class)) {
+
+            if (PHP_SAPI === 'cli') {
+                $error = 'exception' . $exception->getMessage() . PHP_EOL;
+                echo $error;
+            } else {
                 api_result(API_ERROR, $exception->getMessage());
             }
 
